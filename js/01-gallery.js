@@ -13,14 +13,18 @@ function onImageClick(e) {
     return;
   }
 
-  const instance = basicLightbox.create(`
-    <img src="${e.target.dataset.source}" width="800" height="600">
+  onGallaryModalAdd(e);
+}
+
+function onGallaryModalAdd(e) {
+  const modalGallary = basicLightbox.create(`
+    <img src="${e.target.dataset.source}">
 `);
-  instance.show();
+  modalGallary.show();
 
   galaryEl.addEventListener("keydown", (e) => {
     if (e.code === "Escape") {
-      instance.close();
+      modalGallary.close();
     }
   });
 }
