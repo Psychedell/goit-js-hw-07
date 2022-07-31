@@ -22,11 +22,14 @@ function onGallaryModalAdd(e) {
 `);
   modalGallary.show();
 
-  galaryEl.addEventListener("keydown", (e) => {
+  window.addEventListener("keydown", onModalClose);
+
+  function onModalClose(e) {
     if (e.code === "Escape") {
       modalGallary.close();
+      window.removeEventListener("keydown", onModalClose);
     }
-  });
+  }
 }
 
 function makeGalleryMarkup(items) {
