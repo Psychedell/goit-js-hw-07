@@ -17,9 +17,16 @@ function onImageClick(e) {
 }
 
 function onGallaryModalAdd(e) {
-  const modalGallary = basicLightbox.create(`
+  const modalGallary = basicLightbox.create(
+    `
     <img src="${e.target.dataset.source}">
-`);
+`,
+    {
+      onClose: () => {
+        window.removeEventListener("keydown", onModalClose);
+      },
+    }
+  );
   modalGallary.show();
 
   window.addEventListener("keydown", onModalClose);
@@ -27,7 +34,6 @@ function onGallaryModalAdd(e) {
   function onModalClose(e) {
     if (e.code === "Escape") {
       modalGallary.close();
-      window.removeEventListener("keydown", onModalClose);
     }
   }
 }
